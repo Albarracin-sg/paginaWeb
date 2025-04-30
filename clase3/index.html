@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend Simple</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #333;
+        }
+        
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px 0;
+        }
+        
+        input {
+            padding: 8px;
+            width: 200px;
+            margin-bottom: 10px;
+        }
+        
+        .resultado {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        
+        .numeros {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Frontend Simple</h1>
+        
+        <div>
+            <h3>Verificador de edad</h3>
+            <input type="number" id="edadInput" placeholder="¿Cuántos años tienes?">
+            <button id="btnEdad">Verificar</button>
+            <div id="resultadoEdad" class="resultado"></div>
+        </div>
+        
+        <div>
+            <h3>Números del 1 al 10</h3>
+            <button id="btnNumeros">Mostrar números</button>
+            <div id="numerosLista" class="numeros"></div>
+        </div>
+    </div>
+
+    <script>
+        // Ejercicio 1 - Verificador de edad
+        document.getElementById('btnEdad').addEventListener('click', function() {
+            let edad = document.getElementById('edadInput').value;
+            let resultado = document.getElementById('resultadoEdad');
+            
+            if (edad >= 18) {
+                resultado.textContent = "Eres mayor de edad";
+                resultado.style.color = "green";
+            } else {
+                resultado.textContent = "Eres menor de edad";
+                resultado.style.color = "red";
+            }
+        });
+        
+        // Ejercicio 2 - Mostrar números del 1 al 10
+        document.getElementById('btnNumeros').addEventListener('click', function() {
+            let numerosLista = document.getElementById('numerosLista');
+            numerosLista.innerHTML = "";
+            
+            for (let i = 1; i <= 10; i++) {
+                console.log(i);
+                numerosLista.innerHTML += i + " ";
+            }
+        });
+    </script>
+</body>
+</html>
