@@ -1,0 +1,5 @@
+express: El framework web.
+bcrypt: Para hashear y verificar contraseñas de forma segura.
+dotenv: Para cargar variables de entorno desde un archivo .env (útil para configurar la base de datos, secretos, etc.).
+npm install mysql2 # Para MySQL
+npm install cors

@@ -1,0 +1,25 @@
+# Dependencias de Node.js
+node_modules/
+
+# Variables de Entorno
+.env
+
+# Archivos de Log
+npm-debug.log*
+*.log
+
+# Directorios de Build (si los usas)
+dist/
+build/
+
+# Archivos temporales y del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de configuración del editor/IDE (personaliza según tu editor)
+.vscode/
+.idea/
+*.swp
+
+#pacjet-lock.json
+package-lock.json
