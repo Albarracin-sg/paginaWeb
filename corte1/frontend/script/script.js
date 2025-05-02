@@ -1,115 +1,160 @@
-// referencias a los elementos HTML
-const signUpButton = document.getElementById('signUp'); 
-const signInButton = document.getElementById('signIn'); 
-const container = document.getElementById('container'); 
+// Referencias a los elementos de la página
+const signUpButton = document.getElementById('signUp');
+const signInButton = document.getElementById('signIn');
+const container = document.getElementById('container');
 
-// referencias a los formularios y sus campos
+// Referencias a los formularios
 const signUpForm = document.querySelector('.sign-up-container form');
 const signInForm = document.querySelector('.sign-in-container form');
 
-// "event listener" al botón de Registro (en el overlay)
-signUpButton.addEventListener('click', () => {
-    container.classList.add('right-panel-active');
-});
+// Referencias a los elementos del Modal
+const modalBackdrop = document.getElementById("modalBackdrop");
+const customModal = document.getElementById("customModal");
+const modalMessage = document.getElementById("modalMessage");
+const closeModalButton = document.getElementById("closeModalButton");
+const modalIcon = document.getElementById("modalIcon");
 
-// "event listener" al botón de Iniciar Sesion (en el overlay)
-signInButton.addEventListener('click', () => {
-    container.classList.remove('right-panel-active');
-});
+// Función para mostrar el Modal
+function showModal(message, isSuccess) {
+    modalMessage.textContent = message;
 
-// --- Logica para enviar datos al Backend ---
-
-
-// Función para manejar la respuesta de las peticiones
-async function handleResponse(response) {
-    const data = await response.json(); // Intentar parsear la respuesta como JSON
-    if (!response.ok) {
-        // respuesta no exitosa 
-        console.error('Error del backend:', data.message || 'Error desconocido');
-
-        // mensaje al usuario 
-        alert('Error: ' + (data.message || 'Ocurrió un error al procesar tu solicitud.')); // Ejemplo simple con alert
-        throw new Error(data.message || response.statusText); // error para el catch
+    // Establece el tipo de modal (éxito o error)
+    customModal.classList.remove("success", "error");
+    if (isSuccess) {
+        customModal.classList.add("success");
+        if (modalIcon) {
+            modalIcon.innerHTML = '<i class="fas fa-check"></i>'; 
+            modalIcon.style.backgroundColor = "#2ecc71"; 
+        }
+    } else {
+        customModal.classList.add("error");
+        if (modalIcon) {
+            modalIcon.innerHTML = '<i class="fas fa-times"></i>'; 
+            modalIcon.style.backgroundColor = "#e74c3c"; 
+        }
     }
-    // Si la respuesta es exitosa
-    console.log('Respuesta exitosa del backend:', data);
-    
-    // Muestra un mensaje de éxito
-     alert('Éxito: ' + (data.message || 'Operación completada exitosamente.')); 
-    return data; 
+
+    // Mostrar el modal con animación
+    modalBackdrop.classList.add("visible");
+    setTimeout(() => {
+        customModal.classList.add("visible");
+    }, 50);
 }
 
+// Función para ocultar el Modal
+function hideModal() {
+    modalBackdrop.classList.remove("visible");
+    customModal.classList.remove("visible");
+    
+    // Limpiar contenido
+    modalMessage.textContent = "";
+    if (modalIcon) {
+        modalIcon.innerHTML = "";
+        modalIcon.style.backgroundColor = "transparent";
+    }
+    customModal.classList.remove("success", "error");
+}
 
-// Event Listener para el envío del formulario de REGISTRO
-signUpForm.addEventListener('submit', async (event) => {
-    event.preventDefault(); // Previene el envío del formulario por defecto (evita la recarga de la página)
+// Event Listeners para cerrar el Modal
+closeModalButton.addEventListener("click", hideModal);
+modalBackdrop.addEventListener("click", hideModal);
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && customModal.classList.contains("visible")) {
+    hideModal();
+  }
+});
 
-    // Captura los datos del formulario
+// Función para manejar respuestas del servidor
+async function handleResponse(response) {
+    const data = await response.json();
+
+    if (!response.ok) {
+        const errorMessage = data.message || "Ocurrió un error al procesar tu solicitud.";
+        console.error("Error:", errorMessage);
+        showModal(errorMessage, false);
+        return null;
+    }
+
+    const successMessage = data.message || "Operación completada exitosamente.";
+    console.log("Respuesta exitosa:", data);
+    showModal(successMessage, true);
+    return data;
+}
+
+// Event Listener para el formulario de REGISTRO
+signUpForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
     const name = signUpForm.querySelector('input[placeholder="Name"]').value;
     const email = signUpForm.querySelector('input[placeholder="Email"]').value;
     const password = signUpForm.querySelector('input[placeholder="Password"]').value;
 
-    // URL del endpoint de registro en tu backend
-    const registerEndpoint = 'http://localhost:3000/api/auth/register'; // Asegúrate que el puerto y la ruta coincidan
+    const registerEndpoint = "http://localhost:3000/api/auth/register";
 
     try {
         const response = await fetch(registerEndpoint, {
-            method: 'POST', // Método HTTP POST para enviar datos
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json' // Indica que el cuerpo de la petición es JSON
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify({ name, email, password }) // Convierte el objeto de datos a una cadena JSON
+            body: JSON.stringify({ name, email, password }),
         });
 
         const result = await handleResponse(response);
 
-        // Si el registro es exitoso, puedes redirigir al usuario, mostrar un mensaje, o
-        // automáticamente cambiar al panel de login.
+        // Si el registro fue exitoso
         if (result) {
-             // Por ejemplo, cambiar al panel de login después de un registro exitoso
-             container.classList.remove('right-panel-active');
-             // O limpiar el formulario
-             signUpForm.reset();
+            setTimeout(() => {
+                container.classList.remove('right-panel-active'); // Cambiar al panel de login
+                signUpForm.reset(); // Limpiar el formulario
+            }, 1500);
         }
-
     } catch (error) {
-        console.error('Error al enviar el formulario de registro:', error);
-        // handleResponse ya muestra un alert, pero puedes añadir lógica adicional aquí si es necesario
+        console.error("Error de conexión:", error);
+        showModal('Error de conexión. Asegúrate de que el servidor esté funcionando.', false);
     }
 });
 
-// Event Listener para el envío del formulario de LOGIN
-signInForm.addEventListener('submit', async (event) => {
-    event.preventDefault(); // Previene el envío del formulario por defecto
+// Event Listener para el formulario de LOGIN
+signInForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-    // Captura los datos del formulario
     const email = signInForm.querySelector('input[placeholder="Email"]').value;
     const password = signInForm.querySelector('input[placeholder="Password"]').value;
 
-    // URL del endpoint de login en tu backend
-    const loginEndpoint = 'http://localhost:3000/api/auth/login'; // Asegúrate que el puerto y la ruta coincidan
+    const loginEndpoint = "http://localhost:3000/api/auth/login";
 
-     try {
+    try {
         const response = await fetch(loginEndpoint, {
-            method: 'POST',
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify({ email, password }),
         });
 
         const result = await handleResponse(response);
 
-        // Si el login es exitoso, normalmente redirigirías al usuario a otra página
+        // Si el login fue exitoso
         if (result) {
-             console.log('Inicio de sesión exitoso. Redirigiendo...');
-             //window.location.href = '/dashboard'; // Ejemplo de redirección
-             // O muestra un mensaje y limpia el formulario
-             signInForm.reset();
+            setTimeout(() => {
+                hideModal();
+                //window.location.href = '/dashboard.html';
+            }, 1500);
+            
+            signInForm.reset(); // Limpiar el formulario
         }
-
     } catch (error) {
-        console.error('Error al enviar el formulario de login:', error);
-        // handleResponse ya muestra un alert
+        console.error("Error de conexión:", error);
+        showModal('Error de conexión. Asegúrate de que el servidor esté funcionando.', false);
     }
+});
+
+// Lógica para el deslizamiento de paneles
+signUpButton.addEventListener('click', () => {
+    container.classList.add('right-panel-active');
+});
+
+signInButton.addEventListener('click', () => {
+    container.classList.remove('right-panel-active');
 });
