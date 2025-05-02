@@ -19,6 +19,7 @@ signInButton.addEventListener('click', () => {
 
 // --- Logica para enviar datos al Backend ---
 
+
 // Función para manejar la respuesta de las peticiones
 async function handleResponse(response) {
     const data = await response.json(); // Intentar parsear la respuesta como JSON
