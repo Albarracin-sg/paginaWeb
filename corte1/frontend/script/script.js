@@ -1,50 +1,41 @@
-// Obtener referencias a los elementos HTML
-const signUpButton = document.getElementById('signUp'); // Botón "Register" en el overlay derecho
-const signInButton = document.getElementById('signIn'); // Botón "Login" en el overlay izquierdo
-const container = document.getElementById('container'); // Contenedor principal
+// referencias a los elementos HTML
+const signUpButton = document.getElementById('signUp'); 
+const signInButton = document.getElementById('signIn'); 
+const container = document.getElementById('container'); 
 
-// Referencias a los formularios y sus campos
+// referencias a los formularios y sus campos
 const signUpForm = document.querySelector('.sign-up-container form');
 const signInForm = document.querySelector('.sign-in-container form');
 
-// Obtener referencias a los campos de entrada específicos (opcional pero útil para capturar valores)
-// const nameInput = signUpForm.querySelector('input[placeholder="Name"]');
-// const emailInputSignUp = signUpForm.querySelector('input[placeholder="Email"]');
-// const passwordInputSignUp = signUpForm.querySelector('input[placeholder="Password"]');
-
-// const emailInputSignIn = signInForm.querySelector('input[placeholder="Email"]');
-// const passwordInputSignIn = signInForm.querySelector('input[placeholder="Password"]');
-
-
-// --- Lógica para el deslizamiento de paneles (ya la teníamos) ---
-
-// Añadir un "event listener" al botón de Registrarse (en el overlay)
+// "event listener" al botón de Registro (en el overlay)
 signUpButton.addEventListener('click', () => {
     container.classList.add('right-panel-active');
 });
 
-// Añadir un "event listener" al botón de Iniciar Sesión (en el overlay)
+// "event listener" al botón de Iniciar Sesion (en el overlay)
 signInButton.addEventListener('click', () => {
     container.classList.remove('right-panel-active');
 });
 
-// --- Lógica para enviar datos al Backend ---
+// --- Logica para enviar datos al Backend ---
 
-// Función genérica para manejar la respuesta de las peticiones Fetch
+// Función para manejar la respuesta de las peticiones
 async function handleResponse(response) {
     const data = await response.json(); // Intentar parsear la respuesta como JSON
     if (!response.ok) {
-        // Si la respuesta no es exitosa (código de estado 4xx o 5xx)
+        // respuesta no exitosa 
         console.error('Error del backend:', data.message || 'Error desconocido');
-        // Muestra un mensaje de error al usuario (puedes añadir un elemento para mensajes en el HTML)
+
+        // mensaje al usuario 
         alert('Error: ' + (data.message || 'Ocurrió un error al procesar tu solicitud.')); // Ejemplo simple con alert
-        throw new Error(data.message || response.statusText); // Lanza un error para el catch
+        throw new Error(data.message || response.statusText); // error para el catch
     }
-    // Si la respuesta es exitosa (código de estado 2xx)
+    // Si la respuesta es exitosa
     console.log('Respuesta exitosa del backend:', data);
+    
     // Muestra un mensaje de éxito
-     alert('Éxito: ' + (data.message || 'Operación completada exitosamente.')); // Ejemplo simple con alert
-    return data; // Retorna los datos de la respuesta
+     alert('Éxito: ' + (data.message || 'Operación completada exitosamente.')); 
+    return data; 
 }
 
 

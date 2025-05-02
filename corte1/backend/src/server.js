@@ -1,17 +1,16 @@
-// Cargar variables de entorno del archivo .env
 require('dotenv').config();
 
 const express = require('express');
 const authRoutes = require('./routes/authRoutes');
-const db = require('./config/db.config'); // Importar la configuración de la base de datos
+const db = require('./config/db.config'); //configuración de la base de datos
 
 const app = express();
 const port = process.env.PORT || 5000;
 
-// Middleware para parsear el cuerpo de las peticiones en formato JSON
+// parsear el cuerpo de las peticiones en formato JSON
 app.use(express.json());
 
-// Middleware para permitir peticiones desde tu frontend (CORS)
+// permite peticiones desde tu frontend (CORS)
 const cors = require('cors');
 app.use(cors());
 
@@ -19,9 +18,10 @@ app.use(cors());
 app.use('/api/auth', authRoutes);
 
 // Ruta básica de prueba
-app.get('/', (req, res) => {
+app.get('/', (res) => {
   res.send('Backend funcionando!');
 });
+
 
 // Iniciar el servidor DESPUÉS de verificar/crear la tabla de usuarios
 async function startServer() {
@@ -36,9 +36,8 @@ async function startServer() {
 
   } catch (error) {
     console.error('Error al iniciar el servidor:', error);
-    // El error al crear la tabla ya se maneja en db.config.js, pero este catch es para otros errores
     process.exit(1);
   }
 }
 
-startServer(); // Llama a la función para iniciar el servidor
+startServer();

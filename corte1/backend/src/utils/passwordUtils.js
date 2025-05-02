@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 
-const saltRounds = 10; // Número de rondas para el salting (un valor entre 10 y 12 es común)
+const saltRounds = 10; // Número de rondas para el salting (un valor entre 10 y 12)
 
 // Función para hashear una contraseña
 exports.hashPassword = async (password) => {
@@ -9,7 +9,7 @@ exports.hashPassword = async (password) => {
     return hashedPassword;
   } catch (error) {
     console.error('Error hasheando contraseña:', error);
-    throw error; // Relanza el error para que sea manejado por el controlador
+    throw error; // Relanza el error para que sea manejado por el controlador 
   }
 };
 
@@ -23,3 +23,6 @@ exports.comparePassword = async (plainPassword, hashedPassword) => {
     throw error; // Relanza el error
   }
 };
+// resumen: lo que hace esta función es hashear una contraseña y compararla con una hasheada.
+// bcrypt es una librería de Node.js que permite hashear contraseñas de forma segura.
+// El proceso de hashing es irreversible, lo que significa que no puedes obtener la contraseña original a partir del hash.
