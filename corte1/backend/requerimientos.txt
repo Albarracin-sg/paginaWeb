@@ -1,3 +1,4 @@
+instalacion en la termienla del backend (ojo)
 Dependencias:
 
 1. bcrypt:
@@ -32,3 +33,7 @@ Dependencias:
 
 Instalación de todas las dependencias a la vez:
    npm install bcrypt cors dotenv express mysql2 --save-dev nodemon
+
+para correr el servidor 
+    -npm run dev (si las dependencias quedaron bien "nodemon")
+    -node node src/server.js (sin el nodemon)
