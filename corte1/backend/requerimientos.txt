@@ -1,5 +1,34 @@
-express: El framework web.
-bcrypt: Para hashear y verificar contraseñas de forma segura.
-dotenv: Para cargar variables de entorno desde un archivo .env (útil para configurar la base de datos, secretos, etc.).
-npm install mysql2 # Para MySQL
-npm install cors
+Dependencias:
+
+1. bcrypt:
+   - Para encriptar y comparar contraseñas de forma segura.
+   - Instalación: 
+     npm install bcrypt
+
+2. cors:
+   - Middleware para habilitar solicitudes de otros dominios (CORS).
+   - Instalación:
+     npm install cors
+
+3. dotenv:
+   - Permite gestionar variables de entorno en un archivo .env.
+   - Instalación:
+     npm install dotenv
+
+4. express:
+   - Framework web para construir aplicaciones backend con Node.js.
+   - Instalación:
+     npm install express
+
+5. mysql2:
+   - Cliente para interactuar con bases de datos MySQL en Node.js.
+   - Instalación:
+     npm install mysql2
+
+6. nodemon:
+   - Herramienta que reinicia automáticamente el servidor cuando se detectan cambios en el código.
+   - Instalación:
+     npm install --save-dev nodemon
+
+Instalación de todas las dependencias a la vez:
+   npm install bcrypt cors dotenv express mysql2 --save-dev nodemon
