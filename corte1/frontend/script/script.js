@@ -89,7 +89,7 @@ signUpForm.addEventListener("submit", async (event) => {
     const email = signUpForm.querySelector('input[placeholder="Email"]').value;
     const password = signUpForm.querySelector('input[placeholder="Password"]').value;
 
-    const registerEndpoint = "http://localhost:3000/api/auth/register";
+    const registerEndpoint = "https://paginaweb-wemw.onrender.com/api/auth/register";
 
     try {
         const response = await fetch(registerEndpoint, {
@@ -122,7 +122,7 @@ signInForm.addEventListener("submit", async (event) => {
     const email = signInForm.querySelector('input[placeholder="Email"]').value;
     const password = signInForm.querySelector('input[placeholder="Password"]').value;
 
-    const loginEndpoint = "http://localhost:3000/api/auth/login";
+    const loginEndpoint = "https://paginaweb-wemw.onrender.com/api/auth/login";
 
     try {
         const response = await fetch(loginEndpoint, {
