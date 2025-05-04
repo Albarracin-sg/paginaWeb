@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 
-const saltRounds = 10; // Número de rondas para el salting (un valor entre 10 y 12)
+const saltRounds = 10; // numero de rondas para el salting (un valor entre 10 y 12)
 
 // Función para hashear una contraseña
 exports.hashPassword = async (password) => {

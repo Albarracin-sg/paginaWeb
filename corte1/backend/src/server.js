@@ -18,9 +18,10 @@ app.use(cors());
 app.use('/api/auth', authRoutes);
 
 // Ruta básica de prueba
-app.get('/', (res) => {
+app.get('/', (req, res) => {
   res.send('Backend funcionando!');
 });
+
 
 
 // Iniciar el servidor DESPUÉS de verificar/crear la tabla de usuarios
