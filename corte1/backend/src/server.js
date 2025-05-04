@@ -5,7 +5,9 @@ const authRoutes = require('./routes/authRoutes');
 const db = require('./config/db.config'); //configuración de la base de datos
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
+
+
 
 // parsear el cuerpo de las peticiones en formato JSON
 app.use(express.json());
