@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>listas</title>
+</head>
+<body>
+    <h1>Mirar la consola del navegador</h1>
+    <script>
+        const nombres = ['Alexs', 'Santiago', 'Camilo', 'Javier', 'Esteban', 'Mario'];
+        console.log('Lista de nombres:');
+        nombres.forEach(nombre => {
+            console.log(nombre);
+        });
+        const nombresMayusculas = nombres.map(nombre => nombre.toUpperCase());
+        console.log('Nombres en mayúsculas:', nombresMayusculas);
+        const nombresLargos = nombres.filter(nombre => nombre.length > 5);
+        console.log('Nombres con más de 5 letras:', nombresLargos);
+    </script>
+
+</body>
+</html>
