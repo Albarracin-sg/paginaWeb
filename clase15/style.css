@@ -1,0 +1,50 @@
+body {
+  font-family: sans-serif;
+  line-height: 1.6;
+  margin: 20px;
+  transition: background-color 0.5s ease;
+}
+h1,
+p {
+  margin-bottom: 15px;
+}
+button,
+input {
+  margin-right: 10px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+#mensajeOculto {
+  display: none;
+  color: green;
+  font-weight: bold;
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px dashed green;
+}
+#relojDigital {
+  font-size: 1.6em;
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  display: inline-block;
+}
+#mensajeInteraccionInput {
+  margin-top: 10px;
+  font-style: italic;
+  color: #555;
+  min-height: 1.2em;
+}
+#contenedorMensajeBoton p {
+  margin-top: 10px;
+  color: navy;
+}
+#mensajeModular {
+  margin-top: 10px;
+  color: purple;
+  min-height: 1.2em;
+}
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
