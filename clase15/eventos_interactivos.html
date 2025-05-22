@@ -8,31 +8,26 @@
     <link rel="stylesheet" href="">
 </head>
 <body>
-
-    <h1 id="tituloPrincipal">Título Inicial</h1>
+    <nav>
+        <div class="cajaReloj">
+            <div id="relojDigital">Cargando reloj...</div>
+        </div>
+        <h1 id="tituloPrincipal">Título Inicial</h1>
+        <button id="botonCambiar">Cambiar Título, Fondo y Añadir Mensaje</button>
+    </nav>
     <p id="parrafoColor">Este es un párrafo al que le cambiaremos el color al pasar el ratón.</p>
-    <button id="botonCambiar">Cambiar Título, Fondo y Añadir Mensaje</button>
     <div id="contenedorMensajeBoton"></div>
-
-    <hr> 
     <h2>Interacción con Campo de Texto</h2>
     <div>
         <label for="campoTexto">Introduce texto:</label>
         <input type="text" id="campoTexto" placeholder="Escribe algo aquí...">
         <div id="mensajeInteraccionInput">Esperando interacción...</div>
     </div>
-
-    <hr> 
     <h2>Temporizadores</h2>
     <div id="mensajeOculto">¡Este mensaje apareció 3 segundos después de que la página cargara completamente!</div>
-
-    <div id="relojDigital">Cargando reloj...</div>
-
-    <hr> 
     <h2>Interacción Modular</h2>
     <button id="botonModular">Haz clic aquí (Modular)</button>
     <div id="mensajeModular">Este mensaje cambiará con cada clic en el botón modular.</div>
-
     <script src="./index.js"></script>
 
 </body>

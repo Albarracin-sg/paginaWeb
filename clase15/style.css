@@ -4,10 +4,38 @@ body {
   margin: 20px;
   transition: background-color 0.5s ease;
 }
-h1,
-p {
-  margin-bottom: 15px;
+/*-------HEADER---------*/
+nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 55vh;
 }
+nav, .cajaReloj{
+  width: 100%;
+  display: flex;
+  justify-content: right;
+}
+#relojDigital {
+  font-size: 1rem;
+  margin-top: 20px;
+  padding: 10px;
+}
+#botonCambiar {
+  width: 14rem;
+  border: none;
+  background-color: black;
+  color: white;
+  border-radius: 20px;
+  padding: 8px 0;
+  font-weight: 700;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+h1 {
+  font-size: 4rem;
+  margin: 2.5rem 0;
+}
+/*--------HEADER--------*/
 button,
 input {
   margin-right: 10px;
@@ -22,13 +50,7 @@ input {
   padding: 10px;
   border: 1px dashed green;
 }
-#relojDigital {
-  font-size: 1.6em;
-  margin-top: 20px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  display: inline-block;
-}
+
 #mensajeInteraccionInput {
   margin-top: 10px;
   font-style: italic;

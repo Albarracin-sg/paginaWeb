@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const horas = ahora.getHours().toString().padStart(2, "0");
       const minutos = ahora.getMinutes().toString().padStart(2, "0");
       const segundos = ahora.getSeconds().toString().padStart(2, "0");
-      relojDigital.textContent = `Reloj Digital: ${horas}:${minutos}:${segundos}`;
+      relojDigital.textContent = `Reloj Digital:\n ${horas}:${minutos}:${segundos}`;
     }
 
     // Actualizar el reloj cada 1000 ms (1 segundo)
