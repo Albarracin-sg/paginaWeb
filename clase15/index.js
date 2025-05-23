@@ -25,6 +25,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const mensajeModular = document.getElementById("mensajeModular");
   const body = document.body;
 
+  //elemento del css
+  const maincolor = getComputedStyle(document.documentElement).getPropertyValue('--main-color').trim();
+
   // addEventListener para capturar un evento de clic en el botón de cambio
   if (botonCambiar) {
     botonCambiar.addEventListener("click", () => {
@@ -40,27 +43,36 @@ document.addEventListener("DOMContentLoaded", () => {
         Math.floor(Math.random() * 16777215)
           .toString(16)
           .padStart(6, "0");
-      body.style.backgroundColor = randomColor;
+      document.documentElement.style.setProperty('--main-color', randomColor);
 
       // nuevo párrafo con un mensaje debajo del título
       if (contenedorMensajeBoton) {
-        const nuevoParrafo = document.createElement("p");
-        nuevoParrafo.textContent = `¡Acción realizada! El fondo es ahora ${randomColor}.`;
-        contenedorMensajeBoton.appendChild(nuevoParrafo);
-      }
+  // Verifica si ya hay un <p> dentro del contenedor
+        let parrafoExistente = contenedorMensajeBoton.querySelector("p");
+
+        if (parrafoExistente) {
+    // Si ya existe, solo actualiza el contenido
+        parrafoExistente.textContent = `¡Acción realizada! El fondo es ahora ${randomColor}.`;
+      } else {
+    // Si no existe, crea uno nuevo
+          const nuevoParrafo = document.createElement("p");
+          nuevoParrafo.textContent = `¡Acción realizada! El fondo es ahora ${randomColor}.`;
+          contenedorMensajeBoton.appendChild(nuevoParrafo);
+  }
+}
     });
   }
 
   // querySelector y eventos mouseover/mouseout para cambiar el color del párrafo
   if (parrafoColor) {
     parrafoColor.addEventListener("mouseover", () => {
-      parrafoColor.style.color = "blue";
-      parrafoColor.style.fontWeight = "bold";
+      parrafoColor.style.transition = "color 0.5s"; // transición suave
+      parrafoColor.style.color = "white";
     });
 
+    
     parrafoColor.addEventListener("mouseout", () => {
-      parrafoColor.style.color = "black"; 
-      parrafoColor.style.fontWeight = "normal";
+      parrafoColor.style.removeProperty("color");
     });
   }
 
@@ -101,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const horas = ahora.getHours().toString().padStart(2, "0");
       const minutos = ahora.getMinutes().toString().padStart(2, "0");
       const segundos = ahora.getSeconds().toString().padStart(2, "0");
-      relojDigital.textContent = `Reloj Digital:\n ${horas}:${minutos}:${segundos}`;
+      relojDigital.textContent = `Reloj Digital: ${horas}:${minutos}:${segundos}`;
     }
 
     // Actualizar el reloj cada 1000 ms (1 segundo)

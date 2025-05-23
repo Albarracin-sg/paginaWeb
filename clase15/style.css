@@ -1,11 +1,21 @@
+:root {
+  --main-color: #06012b
+}
 body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  margin: 0;
   font-family: sans-serif;
   line-height: 1.6;
-  margin: 20px;
   transition: background-color 0.5s ease;
 }
 /*-------HEADER---------*/
 nav {
+  padding: 0;
+  margin: 0;
+  background: url(./assets/fondotextura.jpg);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,24 +26,72 @@ nav, .cajaReloj{
   display: flex;
   justify-content: right;
 }
+#separador {
+  width: 100%;
+  padding: 5px 0;
+  background-color: var(--main-color)
+}
+#parrafoColor {
+  font-weight: bold;
+  font-size: 0.8rem;
+  color: var(--main-color);
+  text-align: center;
+  margin: 1px 0;
+  padding: 0;
+}
 #relojDigital {
-  font-size: 1rem;
-  margin-top: 20px;
+  font-size: 0.7rem;
   padding: 10px;
 }
 #botonCambiar {
   width: 14rem;
   border: none;
-  background-color: black;
+  background-color: var(--main-color);
   color: white;
   border-radius: 20px;
   padding: 8px 0;
   font-weight: 700;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s;
+}
+#botonCambiar:hover {
+  transform: scale(1.1);
 }
 h1 {
+  color: var(--main-color);
   font-size: 4rem;
   margin: 2.5rem 0;
+}
+h2 {
+  color: var(--main-color);
+  font-size: 2rem;
+  margin: 0;
+}
+
+#campodetexto {
+  border: 1px solid var(--main-color);
+  width: 50%;
+  margin: 2rem 0;
+  padding: 5rem;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+}
+
+#campodetexto h2 {
+  color: var(--main-color);
+  font-size: 2rem;
+  margin: 0;
+}
+
+#campodetexto input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--main-color);
+  border-radius: 5px;
+  font-size: 1rem;
 }
 /*--------HEADER--------*/
 button,
@@ -57,9 +115,15 @@ input {
   color: #555;
   min-height: 1.2em;
 }
+#contenedorMensajeBoton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
 #contenedorMensajeBoton p {
   margin-top: 10px;
-  color: navy;
+  color: black;
 }
 #mensajeModular {
   margin-top: 10px;
@@ -69,4 +133,30 @@ input {
 button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+#contenedorInteracciones {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  margin: 40px 0;
+}
+
+#Temporizador {
+  width: 40%;
+}
+
+#Interaccion {
+  width: 40%;
+}
+
+#botonModular {
+  width: 70%;
+  border: none;
+  background-color: var(--main-color);
+  color: white;
+  border-radius: 20px;
+  padding: 8px 0;
+  font-weight: 700;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }

@@ -15,19 +15,32 @@
         <h1 id="tituloPrincipal">Título Inicial</h1>
         <button id="botonCambiar">Cambiar Título, Fondo y Añadir Mensaje</button>
     </nav>
-    <p id="parrafoColor">Este es un párrafo al que le cambiaremos el color al pasar el ratón.</p>
-    <div id="contenedorMensajeBoton"></div>
-    <h2>Interacción con Campo de Texto</h2>
-    <div>
-        <label for="campoTexto">Introduce texto:</label>
-        <input type="text" id="campoTexto" placeholder="Escribe algo aquí...">
-        <div id="mensajeInteraccionInput">Esperando interacción...</div>
+    <div id="separador">
+        <p id="parrafoColor">Este es un párrafo al que le cambiaremos el color al pasar el ratón.</p>
     </div>
-    <h2>Temporizadores</h2>
-    <div id="mensajeOculto">¡Este mensaje apareció 3 segundos después de que la página cargara completamente!</div>
-    <h2>Interacción Modular</h2>
-    <button id="botonModular">Haz clic aquí (Modular)</button>
-    <div id="mensajeModular">Este mensaje cambiará con cada clic en el botón modular.</div>
+    
+    <div id="contenedorMensajeBoton"></div>
+    
+    <div id="campodetexto">
+        <h2>Interacción con<br>Campo de Texto</h2>
+        <div id="campoTextoContenedor">
+            <label for="campoTexto">Introduce texto:</label>
+            <input type="text" id="campoTexto" placeholder="Escribe algo aquí...">
+            <div id="mensajeInteraccionInput">Esperando interacción...</div>
+        </div>
+    </div>
+    <div id="contenedorInteracciones">
+        <div id="Temporizador">
+            <h2>Temporizadores</h2>
+            <div id="mensajeOculto">¡Este mensaje apareció 3 segundos después de que la página cargara completamente!</div>
+        </div>
+        <div id="Interaccion">
+            <h2>Interacción Modular</h2>
+            <button id="botonModular">Haz clic aquí (Modular)</button>
+            <div id="mensajeModular">Este mensaje cambiará con cada clic en el botón modular.</div>
+        </div>
+    </div>
+    
     <script src="./index.js"></script>
 
 </body>
